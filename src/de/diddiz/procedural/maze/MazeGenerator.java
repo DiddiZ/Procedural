@@ -6,6 +6,9 @@ import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.function.ToDoubleFunction;
 
+/**
+ * @author DiddiZ
+ */
 public class MazeGenerator
 {
 	private final int width, height;
@@ -55,23 +58,23 @@ public class MazeGenerator
 				cells[y * width + x] = new MazeCell(x, y);
 
 		final PriorityQueue<MazePath> pathQueue = createPathQueue();
-		int groups = width * height;
+		int groups = width * height; // Every node is it's own group
 		while (!pathQueue.isEmpty()) {
 			final MazePath path = pathQueue.poll();
-			if (path.from.findGroup() != path.to.findGroup()) {
-				// Mark neighbors
+			if (path.from.findGroup() != path.to.findGroup()) { // Check if nodes are in different groups
+				// Connect nodes
 				if (path.from.x != path.to.x)
 					path.from.hasRightNeighbor = true;
 				else
 					path.from.hasDownNeighbor = true;
 
-				// Join groups
+				// Join components
 				path.from.union(path.to);
 				groups--;
 
-				// Check if all points are covered
+				// Check if all nodes are covered
 				if (groups == 1)
-					break; // All mazepoints covered
+					break;
 			}
 		}
 	}
@@ -85,6 +88,7 @@ public class MazeGenerator
 		walls.add(new MazeWall(0, height, width, height));
 		walls.add(new MazeWall(width, 0, width, height));
 
+		// Inner walls
 		for (int x = 0; x < width; x++)
 			for (int y = 0; y < height; y++) {
 				final MazeCell c = cells[y * width + x];
@@ -93,6 +97,7 @@ public class MazeGenerator
 				if (!c.hasDownNeighbor & y < height - 1)
 					walls.add(new MazeWall(c.x, c.y + 1, c.x + 1, c.y + 1));
 			}
+
 		return walls;
 	}
 

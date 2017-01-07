@@ -1,5 +1,8 @@
 package de.diddiz.procedural.maze;
 
+/**
+ * @author DiddiZ
+ */
 public class MazeCell
 {
 	public final int x, y;

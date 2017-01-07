@@ -2,6 +2,11 @@ package de.diddiz.procedural.maze;
 
 import java.util.function.ToDoubleFunction;
 
+/**
+ * Path connection two maze cells.
+ *
+ * @author DiddiZ
+ */
 public class MazePath
 {
 	public final MazeCell from, to;

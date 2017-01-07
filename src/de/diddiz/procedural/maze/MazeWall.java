@@ -1,5 +1,10 @@
 package de.diddiz.procedural.maze;
 
+/**
+ * Wall inside a maze. Has a starting and an end point. May be an inner or an outer wall.
+ *
+ * @author DiddiZ
+ */
 public class MazeWall
 {
 	private final int fromX, fromY, toX, toY;

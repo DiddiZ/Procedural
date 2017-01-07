@@ -3,6 +3,13 @@ package de.diddiz.procedural.maze;
 import java.util.Random;
 import java.util.function.ToDoubleFunction;
 
+/**
+ * MazeGenerator priorities are ToDoubleFunctions, that map a MazePath to a priority.
+ * Paths with high priority will be picked first are are more likely passable.
+ * Paths with low priority will be picked last and thus are more likely to be walled up.
+ *
+ * @author DiddiZ
+ */
 public final class MazeGeneratorPriorities
 {
 	/**
